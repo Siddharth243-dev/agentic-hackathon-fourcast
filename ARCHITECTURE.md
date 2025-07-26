@@ -70,11 +70,11 @@ User Input (Query)
    - **Memory**: The system uses `google.adk.sessions.InMemorySessionService`. This acts as short-term memory, holding the state and data (like `react_output` and `validator_output`) for a single user session and passing it as context between agents.
 
 3. **Tools / APIs**  
-   - **Google Gemini API**: The core reasoning engine for all agents. The project uses `gemini-1.5-pro` for complex reasoning and `gemini-1.5-flash` for simpler tasks.
+   - **Google Gemini API**: The core reasoning engine for all agents. The project uses `gemini-2.5-pro` for the initial research agent and `gemini-2.5-flash` for validation, refinement, and synthesis.
    - **`google_search`**: A built-in ADK tool used by `react_agent` and `refiner_agent` to find relevant web pages.
    - **`url_context`**: A built-in ADK tool used by `react_agent` and `refiner_agent` to fetch the text content from a given URL.
    - **`exit_loop` (Custom Tool)**: A `FunctionTool` defined in `planner.py` that is called by the `exit_agent` to programmatically terminate the `research_loop_agent`.
 
 4. **Observability**  
-   - **Logging**: The `Runner` provides a stream of events that can be monitored. Simple `print()` statements in the code (e.g., in the `exit_loop` tool) provide a basic real-time trace of agent execution in the console.
+   - **Logging**: The `executor.py` module provides real-time user feedback via a `streamlit.status` component. It displays which agent is currently active (`Researching`, `Validating`, etc.) and logs specific tool calls as they happen, offering a transparent view into the agent's reasoning process.
    - **Error Handling**: The primary error handling is in `executor.py`, where a `try...except` block catches exceptions during the agent run and displays a user-friendly error in the Streamlit UI. The `research_loop_agent` also has a `max_iterations=5` safeguard to prevent infinite loops.

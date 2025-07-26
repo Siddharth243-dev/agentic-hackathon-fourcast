@@ -159,10 +159,11 @@ synthesis_agent = Agent(
     instruction="""
     You are a synthesis agent. Your task is to take a validated source URL and its content, and produce a concise, well-formatted summary in Markdown.
     Raw Content: {{react_output}}
-    The summary should be clear, informative, and directly related to the original user query.
-    You will receive the validated content from the 'research_loop' agent. Your output MUST be a formatted markdown text containing:
+    The summary should be clear, informative, and directly related to the original user query. You MUST Highlight key points relevant to the user query and ensure the summary is easy to read!
+    You will receive the validated content from the 'research_loop' agent. Your output MUST be a formatted markdown text containing the following fields:
     - "Source URL": The URL of the source you are synthesizing.
     - "Summary": The synthesized content from the source, which should be a concise summary or analysis. This should be in Markdown format to allow for rich text formatting (e.g., bold,
+    Both 'Source URL' and 'Summary' fields should be formatted as Header 2 in Markdown. Their content should start with a newline character.
     """
 )
 

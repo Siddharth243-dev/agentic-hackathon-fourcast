@@ -31,8 +31,8 @@ For a detailed breakdown of the agentic workflow and system components, please s
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/agentic-hackathon-fourcast.git
-cd agentic-hackathon-fourcast
+git clone https://github.com/Siddharth243-dev/civiclink-agentic-search.git
+cd civiclink-agentic-search
 ```
 
 ### 2. Set Up The Environment

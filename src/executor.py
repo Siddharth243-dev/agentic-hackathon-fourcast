@@ -79,7 +79,28 @@ async def run_workflow(agent: planner.Agent, user_id: str, query: str, status: s
 
 def main():
     st.title("CivicLink - Agentic AI Search")
+
+    # Custom CSS to make the text input larger and more prominent
     st.markdown("""
+    <style>
+    /* Custom class for main descriptive text */
+    .main-text {
+        font-size: 1.1rem !important;
+    }
+
+    /* Target the label of the text_area */
+    label[data-testid="stWidgetLabel"] {
+        font-size: 1.25rem !important;
+    }
+    /* Target the text inside the text_area */
+    .stTextArea textarea {
+        font-size: 1.0rem !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    st.markdown("""
+    <div class="main-text">
     Welcome! This isn't just another search engine. Instead of giving you a long list of links to sort through, we use a team of specialized AI agents to find, verify, and summarize the best answer for you.
 
     **Here’s how it works:**
@@ -88,13 +109,20 @@ def main():
     3.  **The Writer**: Once a source is approved, our final agent reads the content and writes a clear, concise summary, citing the original source.
 
     The result is a single, trustworthy answer, saving you time and effort. Go ahead and ask a question to see them in action!
-    """)
+    </div>
+    """, unsafe_allow_html=True)
 
     st.divider()
 
-    user_query = st.text_input(
-        "Trying to figure out if your county allows you to grow a Blue Marble Tree in your backyard?",
-        placeholder="Or ask about any other public policy, zoning law, or civic question..."
+    st.markdown(
+        "#### Trying to figure out if your county allows you to grow a :blue[Blue Marble Tree] in your :green[backyard] :material/mystery: ####",
+        
+          )
+
+    user_query = st.text_area(
+        label='Does my county allow me to grow a Blue Marble Tree in my backyard?',
+        placeholder="Or ask about any other public policy, zoning law, or civic question...",
+        height=120
     )
 
     if 'user_id' not in st.session_state:
@@ -111,7 +139,7 @@ def main():
 
             if final_response:
                 st.header("Final Answer:")
-                st.markdown(final_response)
+                st.markdown(f'<div class="main-text">{final_response}</div>', unsafe_allow_html=True)
 
 
 if __name__ == "__main__":

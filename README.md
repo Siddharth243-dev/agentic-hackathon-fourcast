@@ -1,42 +1,77 @@
-# Agentic AI App Hackathon Template
+# Agentic AI Search
 
-Welcome! This repository is your starting point for the **Agentic AI App Hackathon**. It includes:
+This repository contains an advanced search application built for the **Agentic AI App Hackathon**. This project uses a multi-agent system powered by Google Gemini to provide users with reliable, validated, and summarized answers to their queries. It goes beyond simple search by employing a research loop that validates sources for credibility and relevance before presenting the final result.
 
-- A consistent folder structure  
-- An environment spec (`environment.yml` or `Dockerfile`)  
-- Documentation placeholders to explain your design and demo
+## ✨ Features
+
+- **Multi-Agent Workflow**: A sequential process involving research, validation, refinement, and synthesis agents.
+- **ReAct-based Research**: The initial agent uses a ReAct (Reason+Act) pattern to search and select a primary source.
+- **Iterative Validation Loop**: A core feature where a `validator_agent` scrutinizes the source. If rejected, a `refiner_agent` finds a better one.
+- **Dynamic Summarization**: A `synthesis_agent` creates a clean, Markdown-formatted summary from the final approved source.
+- **Interactive UI**: A simple and effective user interface built with Streamlit.
+
+## 🏛️ Architecture
+
+For a detailed breakdown of the agentic workflow and system components, please see ARCHITECTURE.md. For a technical deep-dive, refer to EXPLANATION.md.
 
 ## 📋 Submission Checklist
 
-- [ ] All code in `src/` runs without errors  
-- [ ] `ARCHITECTURE.md` contains a clear diagram sketch and explanation  
-- [ ] `EXPLANATION.md` covers planning, tool use, memory, and limitations  
-- [ ] `DEMO.md` links to a 3–5 min video with timestamped highlights  
-
+- [ ] All code in `src/` runs without errors
+- [ ] `ARCHITECTURE.md` contains a clear diagram sketch and explanation
+- [ ] `EXPLANATION.md` covers planning, tool use, memory, and limitations
+- [ ] `DEMO.md` links to a 3–5 min video with timestamped highlights
 
 ## 🚀 Getting Started
 
-1. **Clone / Fork** this template.  Very Important. Fork Name MUST be the same name as the teamn name
+### Prerequisites
 
+- **Python 3.9+**
+- **Conda** (or another virtual environment manager like `venv`)
+- A **Google Gemini API Key**. You can get one from Google AI Studio.
 
-## 📂 Folder Layout
+### 1. Clone the Repository
+```bash
+git clone https://github.com/your-username/agentic-hackathon-fourcast.git
+cd agentic-hackathon-fourcast
+```
 
-![Folder Layout Diagram](images/folder-githb.png)
+### 2. Set Up The Environment
 
+It is recommended to use a virtual environment. The `environment.yml` file is provided for Conda users.
 
+```bash
+# Create and activate the conda environment
+conda env create -f environment.yml
+conda activate agentic-hackathon
+```
 
-## 🏅 Judging Criteria
+If you are not using Conda, you can install the dependencies using `pip`:
+```bash
+# Create and activate a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
 
-- **Technical Excellence **  
-  This criterion evaluates the robustness, functionality, and overall quality of the technical implementation. Judges will assess the code's efficiency, the absence of critical bugs, and the successful execution of the project's core features.
+# Install dependencies
+pip install -r requirements.txt
+```
 
-- **Solution Architecture & Documentation **  
-  This focuses on the clarity, maintainability, and thoughtful design of the project's architecture. This includes assessing the organization and readability of the codebase, as well as the comprehensiveness and conciseness of documentation (e.g., GitHub README, inline comments) that enables others to understand and potentially reproduce or extend the solution.
+### 3. Configure Environment Variables
 
-- **Innovative Gemini Integration **  
-  This criterion specifically assesses how effectively and creatively the Google Gemini API has been incorporated into the solution. Judges will look for novel applications, efficient use of Gemini's capabilities, and the impact it has on the project's functionality or user experience. You are welcome to use additional Google products.
+Create a file named `.env` in the root directory of the project and add your Google API key.
 
-- **Societal Impact & Novelty **  
-  This evaluates the project's potential to address a meaningful problem, contribute positively to society, or offer a genuinely innovative and unique solution. Judges will consider the originality of the idea, its potential real‑world applicability, and its ability to solve a challenge in a new or impactful way.
+```
+GOOGLE_API_KEY="YOUR_API_KEY_HERE"
+```
+The application uses `python-dotenv` to automatically load this key.
 
+## 🏃 How to Run
 
+1.  Make sure your virtual environment (`conda` or `venv`) is activated.
+2.  Run the Streamlit application from the project's root directory:
+
+    ```bash
+    streamlit run src/executor.py
+    ```
+
+3.  Open your web browser and navigate to the local URL provided by Streamlit (usually `http://localhost:8501`).
+4.  Enter your query in the text box and click "Search" to start the agentic workflow.

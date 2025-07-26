@@ -1,0 +1,5 @@
+google-generativeai
+google-adk
+streamlit
+python-dotenv
+pydantic

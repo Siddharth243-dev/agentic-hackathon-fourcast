@@ -57,9 +57,24 @@ async def run_workflow(agent: planner.Agent, user_id: str, query: str):
     return chosen_route  # Un-comment this to return the result
 
 def main():
-    st.title("Agentic AI Search")
+    st.title("CivicLink - Agentic AI Search")
+    st.markdown("""
+    Welcome! This isn't just another search engine. Instead of giving you a long list of links to sort through, we use a team of specialized AI agents to find, verify, and summarize the best answer for you.
 
-    user_query = st.text_input("Enter your query:")
+    **Here’s how it works:**
+    1.  **The Researcher**: When you ask a question, our first agent scours the web to find the most relevant information.
+    2.  **The Fact-Checker**: A meticulous validator agent then examines that source for credibility, relevance, and timeliness. If it doesn't meet our high standards, the researcher is sent back to find a better one.
+    3.  **The Writer**: Once a source is approved, our final agent reads the content and writes a clear, concise summary, citing the original source.
+
+    The result is a single, trustworthy answer, saving you time and effort. Go ahead and ask a question to see them in action!
+    """)
+
+    st.divider()
+
+    user_query = st.text_input(
+        "Trying to figure out if your county allows you to grow a Blue Marble Tree in your backyard?",
+        placeholder="Or ask about any other public policy, zoning law, or civic question..."
+    )
 
     if 'user_id' not in st.session_state:
         st.session_state.user_id = str(uuid.uuid4())

@@ -12,7 +12,7 @@ react_agent = Agent(
     planner=BuiltInPlanner(
     thinking_config = types.ThinkingConfig(
         include_thoughts=False,
-        thinking_budget=500)
+        thinking_budget=250)
     ),
     description = 'A research agent that uses Google Search to find relevant URLs for a given query, selects the most promising one, and extracts its content and metadata for further analysis.',
     instruction = """
@@ -45,11 +45,11 @@ def exit_loop(tool_context: ToolContext):
 
 validator_agent = Agent(
     name = 'validator',
-    model = 'gemini-2.5-pro',
+    model = 'gemini-2.5-flash',
     planner=BuiltInPlanner(
         thinking_config = types.ThinkingConfig(
             include_thoughts=False,
-            thinking_budget=200)
+            thinking_budget=100)
         ),
     description = 'Validator agent that checks the accuracy of the source provided by the ReAct agent.',
     instruction = """
@@ -89,11 +89,11 @@ validator_agent = Agent(
 
 refiner_agent = Agent(
     name = 'refiner',
-    model = 'gemini-2.5-pro',
+    model = 'gemini-2.5-flash',
     planner=BuiltInPlanner(
     thinking_config = types.ThinkingConfig(
         include_thoughts=False,
-        thinking_budget=200)
+        thinking_budget=100)
     ),
     description = 'Refines a search attempt based on feedback from the validator agent.',
     instruction = """

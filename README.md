@@ -10,17 +10,6 @@ This repository contains an advanced search application built for the **Agentic 
 - **Dynamic Summarization**: A `synthesis_agent` creates a clean, Markdown-formatted summary from the final approved source.
 - **Interactive UI**: A simple and effective user interface built with Streamlit.
 
-## 🏛️ Architecture
-
-For a detailed breakdown of the agentic workflow and system components, please see ARCHITECTURE.md. For a technical deep-dive, refer to EXPLANATION.md.
-
-## 📋 Submission Checklist
-
-- [ ] All code in `src/` runs without errors
-- [ ] `ARCHITECTURE.md` contains a clear diagram sketch and explanation
-- [ ] `EXPLANATION.md` covers planning, tool use, memory, and limitations
-- [ ] `DEMO.md` links to a 3–5 min video with timestamped highlights
-
 ## 🚀 Getting Started
 
 ### Prerequisites

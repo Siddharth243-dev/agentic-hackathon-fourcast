@@ -139,7 +139,7 @@ def main():
 
             if final_response:
                 st.header("Final Answer:")
-                st.markdown(f'<div class="main-text">{final_response}</div>', unsafe_allow_html=True)
+                st.markdown(final_response, unsafe_allow_html=False)
 
 
 if __name__ == "__main__":

@@ -3,3 +3,4 @@ src/__pycache__
 src/main.py
 agent_execution.log
 mermaid.md
+script.md

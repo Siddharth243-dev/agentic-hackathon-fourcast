@@ -126,7 +126,7 @@ refiner_agent = Agent(
 
 exit_agent = Agent(
     name = 'exit',
-    model = 'gemini-2.0-flash',
+    model = 'gemini-2.5-flash',
     description = 'Exit agent that signals the end of the research loop.',
     instruction = """
     You are an exit agent. Your sole purpose is to signal the end of the research loop.
@@ -151,22 +151,29 @@ synthesis_agent = Agent(
     name='synthesis',
     model='gemini-2.5-flash',
     planner=BuiltInPlanner(
-    thinking_config = types.ThinkingConfig(
-        include_thoughts=False,
-        thinking_budget=100)
+        thinking_config=types.ThinkingConfig(
+            include_thoughts=False,
+            thinking_budget=100)
     ),
     description='Synthesis agent that creates a concise summary from a validated source.',
     instruction="""
     You are a synthesis agent. Your task is to take a validated source URL and its content, and produce a concise, well-formatted summary in Markdown.
     Raw Content: {{react_output}}
-    The summary should be clear, informative, and directly related to the original user query. You MUST Highlight key points relevant to the user query and ensure the summary is easy to read!
-    You will receive the validated content from the 'research_loop' agent. Your output MUST be a formatted markdown text containing the following fields:
-    - "Source URL": The URL of the source you are synthesizing.
+    The summary should be clear, informative, and directly related to the original user query.
+    You will receive the validated content from the 'research_loop' agent. Your output MUST be a formatted markdown text containing:
+    - "Source URL": The URL of the source you are synthesizing. The link should be clickable and formatted as `[Click here to view the source.](URL)`.
     - "Summary": The synthesized content from the source, which should be a concise summary or analysis. This should be in Markdown format to allow for rich text formatting (e.g., bold, italics, links, etc.).
-    Both 'Source URL' and 'Summary' fields should be formatted as Header 3 (e.g., ###) in Markdown. Their content should start with a newline character.
+
+    Example Output:
+    ## Source URL
+
+    [Click here to view the source.](https://example.com)
+
+    ## Summary
+
+    [THE SUMMARY HERE]
     """
 )
-
 executor_agent = SequentialAgent(
     name='sequential_agent',
     sub_agents=[react_agent, research_loop_agent, synthesis_agent],
